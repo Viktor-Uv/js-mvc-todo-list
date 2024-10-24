@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js --ignore ./view"
+    "start": "nodemon index.js --ignore ./view",
+    "migrate": "node-pg-migrate",
+    "migrate-and-start": "npm run migrate up && npm start"
   },
   "author": "",
   "license": "ISC",
@@ -12,6 +14,7 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "formidable": "^2.1.1",
+    "node-pg-migrate": "^7.7.1",
     "pg": "^8.10.0"
   },
   "devDependencies": {
