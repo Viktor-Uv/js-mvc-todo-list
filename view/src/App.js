@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
-import {createTodo, getAllTodo, removeTodo} from './util';
+import { createTodo, getAllTodo, removeTodo } from './util';
 
 const App = () => {
   const [todo, setTodo] = useState({
@@ -9,38 +9,38 @@ const App = () => {
   const [todoList, setTodoList] = useState();
   const [error, setError] = useState();
 
-// Create a handleSubmit() function to add new to-do list
-const handleSubmit = async (e) => {
+  // Create a fetchTodos() function to update the View from Model using getTodos() from Controller
+  const fetchTodos = async () => {
+    const response = await getAllTodo();
+    if (response.error) {
+      setError(response.error.name);
+    }
+    setTodoList(response.data);
+  };
+
+  // Create a handleSubmit() function to add new to-do list
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError();
     const newTodo = new FormData(e.currentTarget);
-    newTodo.set("description", todo.description);
-    newTodo.set("created_at", `${new Date().toISOString()}`);
+    newTodo.set('description', todo.description);
+    newTodo.set('created_at', `${new Date().toISOString()}`);
     const response = await createTodo(newTodo);
     if (response.error) {
-        setError(response.error.name);
+      setError(response.error.name);
     }
-    setTodo({description: ""});
+    setTodo({ description: '' });
     await fetchTodos();
-};
+  };
 
-// Create a fetchTodos() function to update the View from Model using getTodos() function from Controller
-const fetchTodos = async () => {
-    const response = await getAllTodo();
-    if (response.error) {
-        setError(response.error.name);
-    }
-    setTodoList(response.data);
-};
-
-// Create a handleDelete() function to remove to-do list with matching id
-const handleDelete = async (id) => {
+  // Create a handleDelete() function to remove to-do list with matching id
+  const handleDelete = async (id) => {
     const response = await removeTodo(id);
     if (response.error) {
-        setError(response.error.name);
+      setError(response.error.name);
     }
     await fetchTodos();
-}
+  };
 
   useEffect(() => {
     // Initialize todoList
@@ -52,9 +52,9 @@ const handleDelete = async (id) => {
         <input
           type="text"
           value={todo.description}
-          onChange={(event) =>
-            setTodo({ ...todo, description: event.target.value })
-          }
+          onChange={(event) => setTodo(
+            { ...todo, description: event.target.value },
+          )}
         ></input>
         <button type="submit">Add Todo</button>
       </form>
