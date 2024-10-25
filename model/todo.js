@@ -1,4 +1,4 @@
-const pool = require("database");
+const pool = require("./database");
 
 exports.create = (description, cb) => {
     pool.query("INSERT INTO todo(description) VALUES ($1) RETURNING *;", [
