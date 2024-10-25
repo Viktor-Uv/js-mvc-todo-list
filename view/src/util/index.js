@@ -17,3 +17,11 @@ exports.getAllTodo = async () => {
         .then((response) => response.json())
         .catch((error) => ({error: error}));
 };
+
+exports.removeTodo = async (id) => {
+    return fetch(`${API_ENDPOINT}/todo/${id}`, {
+        method: "DELETE"
+    })
+        .then((response) => response.json())
+        .catch((error) => ({error: error}));
+};
