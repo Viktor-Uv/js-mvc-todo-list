@@ -34,6 +34,13 @@ const fetchTodos = async () => {
 };
 
 // Create a handleDelete() function to remove to-do list with matching id
+const handleDelete = async (id) => {
+    const response = await removeTodo(id);
+    if (response.error) {
+        setError(response.error.name);
+    }
+    await fetchTodos();
+}
 
   useEffect(() => {
     // Initialize todoList
