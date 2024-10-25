@@ -4,7 +4,7 @@ const router = express.Router();
 const PATH = "/todo";
 
 router.post(`${PATH}`, create);
-router.get(`${PATH}/:id`, readAll);
+router.get(`${PATH}`, readAll);
 router.delete(`${PATH}/:id`, remove);
 
 module.exports = router;
