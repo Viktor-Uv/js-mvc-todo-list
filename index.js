@@ -2,10 +2,14 @@ const express = require('express');
 require('dotenv').config();
 // import routes
 const todoRoutes = require('./routes/todo');
+const cors = require('cors');
+const logger = require('morgan');
 
 // Running express server
 const app = express();
 const port = process.env.PORT || 8000;
+app.use(cors());
+app.use(logger('dev'));
 
 // route middlewares
 app.use('/api', todoRoutes);
