@@ -27,3 +27,14 @@ exports.create = (req, res) => {
         });
     });
 };
+
+exports.readAll = (req, res) => {
+    readAll((err, result) => {
+        if (err) {
+            return res.status(400).json(err);
+        }
+        res.status(200).json({
+            data: result.rows
+        });
+    });
+};
