@@ -11,3 +11,9 @@ exports.createTodo = async (todo) => {
         .then((response) => response.json())
         .catch((error) => ({error: error}));
 };
+
+exports.getAllTodo = async () => {
+    return fetch(`${API_ENDPOINT}/todo`)
+        .then((response) => response.json())
+        .catch((error) => ({error: error}));
+};
