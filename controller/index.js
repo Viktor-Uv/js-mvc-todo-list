@@ -38,3 +38,16 @@ exports.readAll = (req, res) => {
         });
     });
 };
+
+exports.remove = (req, res) => {
+    const {id} = req.params;
+    remove(id, (err, result) => {
+        if (err) {
+            return res.status(400).json(err);
+        }
+        if (result.rowCount === 0) {
+            return res.status(404);
+        }
+        return res.status(204);
+    })
+};
