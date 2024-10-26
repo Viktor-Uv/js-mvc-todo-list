@@ -44,6 +44,7 @@ const App = () => {
 
   useEffect(() => {
     // Initialize todoList
+    fetchTodos();
   }, []);
   return (
     <div className="App">
@@ -52,9 +53,7 @@ const App = () => {
         <input
           type="text"
           value={todo.description}
-          onChange={(event) => setTodo(
-            { ...todo, description: event.target.value },
-          )}
+          onChange={(event) => setTodo({ ...todo, description: event.target.value })}
         ></input>
         <button type="submit">Add Todo</button>
       </form>
