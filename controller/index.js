@@ -21,7 +21,7 @@ exports.create = (req, res) => {
             if (err) {
                 return res.status(400).json(err);
             }
-            res.status(201).json({
+            return res.status(201).json({
                 data: result.rows[0]
             });
         });
@@ -33,7 +33,7 @@ exports.readAll = (req, res) => {
         if (err) {
             return res.status(400).json(err);
         }
-        res.status(200).json({
+        return res.status(200).json({
             data: result.rows
         });
     });
