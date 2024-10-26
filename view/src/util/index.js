@@ -1,27 +1,33 @@
 const API_ENDPOINT = 'http://localhost:8000/api';
 
 exports.createTodo = async (todo) => {
-  fetch(`${API_ENDPOINT}/todo`, {
-    method: 'POST',
-    body: todo,
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  })
-    .then((response) => response.json())
-    .catch((error) => ({ error }));
+  try {
+    const response = await fetch(`${API_ENDPOINT}/todo`, {
+      method: 'POST',
+      body: todo,
+    });
+    return response.json();
+  } catch (error) {
+    return { error };
+  }
 };
 
 exports.getAllTodo = async () => {
-  fetch(`${API_ENDPOINT}/todo`)
-    .then((response) => response.json())
-    .catch((error) => ({ error }));
+  try {
+    const response = await fetch(`${API_ENDPOINT}/todo`);
+    return response.json();
+  } catch (error) {
+    return { error };
+  }
 };
 
 exports.removeTodo = async (id) => {
-  fetch(`${API_ENDPOINT}/todo/${id}`, {
-    method: 'DELETE',
-  })
-    .then((response) => response.json())
-    .catch((error) => ({ error }));
+  try {
+    await fetch(`${API_ENDPOINT}/todo/${id}`, {
+      method: 'DELETE',
+    });
+    return 'deleted';
+  } catch (error) {
+    return { error };
+  }
 };
