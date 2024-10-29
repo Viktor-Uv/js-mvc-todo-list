@@ -46,8 +46,8 @@ exports.remove = (req, res) => {
             return res.status(400).json(err);
         }
         if (result.rowCount === 0) {
-            return res.status(404);
+            return res.status(404).send();
         }
-        return res.status(204);
-    })
+        return res.status(204).send();
+    });
 };
