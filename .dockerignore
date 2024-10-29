@@ -1,0 +1,11 @@
+node_modules
+view
+.idea
+.git
+README.MD
+Dockerfile
+*.log
+.dockerignore
+.gitignore
+package-lock.json
+*.iml
